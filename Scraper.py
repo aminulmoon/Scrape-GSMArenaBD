@@ -21,7 +21,9 @@ api_data['H2'] = h2
 h2_paragraph = soup.find('div', {'class':'col-md-9'}).find('p').text
 api_data['H2 Paragraph'] = h2_paragraph
 
-# table_h2 = soup.find('div', {'class':'col-md-9'}).find('h2', {'class':'heading'}).text
+table_h2 = soup.find('div', {'class':'col-md-9'}).findAll('h2', {'class':'heading'})[1].text
+api_data['Table H2'] = table_h2
+
 
 tables = soup.findAll('table', {'class':'table_specs'})
 for table in tables:
@@ -30,4 +32,5 @@ for table in tables:
         table_data = row.findAll('td')
         if len(table_data) == 2:
             api_data[table_data[0].text] = table_data[1].text
-            pprint(api_data)
+
+pprint(api_data)
